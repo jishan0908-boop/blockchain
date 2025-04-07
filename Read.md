@@ -246,8 +246,81 @@ contract Calculator{
 ```
 ##  In the above code we have use the function , where to define any function first we use the function keyword them we name that function then we add some paameters that we are going to pass , then we add the abtraction level , where we have four type of abstraction  public , private , internal and external, then we add view keyword to see the result and then we add retruns if our function is returning any thing we have to give the retrun type also.
 
+## 4. Showing demonstation how we deploy our contract on block chain.
 
+## I have created an code where I have used the modifyier , struct ,constructor .
+# code
+## Breif about code , here the code is of twitter , where a person can tweet and that tweet is stored in the string array , also that array stores the author information which is our address of wallet , content which is our tweet , timestamp which store the time and the likes which tell the number of likes we get on our tweet. 
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
 
+contract Twitter{
+    
+    struct Tweet {
+        address author;
+        string content;
+        uint256 timestamp;
+        uint256 likes;
+    }
 
+    uint8  MAX_TWEET_LENGTH = 100;
+    address public owner;
+    constructor(){
+        owner = msg.sender;
+    }
 
+    modifier onlyOwner(){
+        require(msg.sender == owner , "You are not the owner");
+        _;
+    }
 
+    mapping(address => Tweet[]) public tweets;
+
+    function chnageTweetLength(uint8 newTweetLength) public onlyOwner{
+        MAX_TWEET_LENGTH = newTweetLength;
+    } 
+
+    function createTweet(string memory _tweet) public {
+        require(bytes(_tweet).length <= MAX_TWEET_LENGTH , "Tweet is tooo long \n");
+
+        Tweet memory newTweet = Tweet({
+            author:msg.sender,
+            content:_tweet,
+            timestamp:block.timestamp,
+            likes: 0
+        });
+        tweets[msg.sender].push(newTweet);
+    }
+
+    function getTweet( uint _i) public view returns(Tweet memory){
+        return tweets[msg.sender][_i];
+    }
+
+    function getAllTweets(address  _owner) public view returns (Tweet[] memory){
+        return tweets[_owner];
+    }
+}
+
+```
+# Complieing the code
+![Screenshot from 2025-04-07 14-34-01](https://github.com/user-attachments/assets/37e7677e-722f-4a28-a2c6-dbab8257a348)
+![Screenshot from 2025-04-07 14-34-48](https://github.com/user-attachments/assets/10c99103-6e3c-462e-9c8b-d80077b94342)
+
+# Deploying on blockchain
+
+![Screenshot from 2025-04-07 14-35-04](https://github.com/user-attachments/assets/ad666360-c7d5-4ff5-ad07-75a70b626110)
+
+## After Deploying we can see the green tick which show our contract is deployed on the blockchain
+
+![Screenshot from 2025-04-07 14-35-32](https://github.com/user-attachments/assets/755c771e-4082-4db2-82dd-94c0a6f8b004)
+
+## Running the code 
+
+![Screenshot from 2025-04-07 14-39-21](https://github.com/user-attachments/assets/6e3b4f1b-9a33-4f7b-95d2-5dfbdf411698)
+
+![Screenshot from 2025-04-07 14-39-53](https://github.com/user-attachments/assets/9c99934e-7f9e-4508-b559-80027e202ab6)
+
+![Screenshot from 2025-04-07 14-40-20](https://github.com/user-attachments/assets/d8fc347f-6e1c-4e8c-9612-4794260d6544)
+
+![Screenshot from 2025-04-07 14-40-33](https://github.com/user-attachments/assets/de9a6069-b291-4ea6-9159-9510dd01fa83)
