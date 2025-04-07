@@ -158,7 +158,8 @@ ipfs add <audio-path>
 ```
 to add audio
 
-![audio](https://github.com/user-attachments/assets/63297200-f2dd-48e0-ae29-a319240ec2d5)
+![pic2](https://github.com/user-attachments/assets/23e5aa80-51d3-4f99-8daf-8e354b5c94d1)
+
 
 
 ```
@@ -166,7 +167,8 @@ ipfs add <video-path>
 ```
 to add video
 
-![video](https://github.com/user-attachments/assets/131c2e88-a2fa-47a1-93f3-22d615d2e1bd)
+![pic1](https://github.com/user-attachments/assets/bc6c1e37-bff7-45d7-b25a-61c80d6dbfb2)
+
 
 
 
