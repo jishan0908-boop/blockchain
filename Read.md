@@ -98,7 +98,8 @@ ipfs daemon
 ```
 to use daemon
 
-![one](https://github.com/user-attachments/assets/28cf8c2c-f1d6-44f3-ade3-37cb24e5b492)
+![pic 3](https://github.com/user-attachments/assets/70fe107a-0780-4f92-a65e-724c1d8c426b)
+
 
 
 ```
@@ -168,6 +169,12 @@ ipfs add <video-path>
 to add video
 
 ![pic1](https://github.com/user-attachments/assets/bc6c1e37-bff7-45d7-b25a-61c80d6dbfb2)
+
+
+# Creating Meta Mask Account
+
+## The metamask account is our wallet where it store the token , like sepolia faucet which are the test token , with the help of metamask wallet we will do the transaction and deploy our smart contract on the blockchain.
+
 
 
 
