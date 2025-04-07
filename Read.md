@@ -203,6 +203,15 @@ to add video
 ### In above Image , the file explore saves our contracts.
 
 
+## Practice of Solidity:
+
+## 1. To work in solidity we have to add these line of code in every smart contract that we are going to create , here SPDX is licence which tells , who can see the our contract and use it because the blockchain provides transpency , in next line we use pragma it tells the version of solidity we are using we can change the version of solidity as per our needs.
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+```
+
 
 
 
