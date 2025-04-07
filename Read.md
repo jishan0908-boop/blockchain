@@ -212,6 +212,39 @@ to add video
 pragma solidity ^0.8.18;
 ```
 
+## 2. Worst basic program we can write .
+
+```
+contract Hello {
+    string public welecome = "Hello World";
+}
+```
+## The above code is the worst program but have some basic imp concepts that we can use , for eg , the contract is the key word in solidity , where inside the contract we are going to write our how ER200 , after that we used the string which is a datatype , and public represent that everyone can see our contract and use it.
+
+## 3. Creating function in solidity:
+
+```
+contract Calculator{
+    uint256 result = 0 ; 
+    function add(uint128 num1) external {
+        result += num1;
+    }
+
+    function subtract(uint128 num2) public{
+        result -= num2;
+    }
+
+    function multiply(uint128 num3) public{
+        result *= num3;
+    }
+
+    function get() public view returns (uint256){
+        return result; 
+    }
+
+}
+```
+##  In the above code we have use the function , where to define any function first we use the function keyword them we name that function then we add some paameters that we are going to pass , then we add the abtraction level , where we have four type of abstraction  public , private , internal and external, then we add view keyword to see the result and then we add retruns if our function is returning any thing we have to give the retrun type also.
 
 
 
