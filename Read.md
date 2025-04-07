@@ -190,9 +190,17 @@ to add video
 
 # Solidity:
 
-## We 
+## We write our smart contract in the solidity language .
 
+## To use this Language I have used the Remix ide website where I can deploy my contract for free also we can use our metamask account to know how to make transcation through that.
 
+![Screenshot from 2025-04-07 14-14-40](https://github.com/user-attachments/assets/999e5a01-ba76-4c09-ac6d-437fd7f6e8bb)
+
+![Screenshot from 2025-04-07 14-15-33](https://github.com/user-attachments/assets/4278e7a5-1d63-4dbf-a762-33c43c31e0a9)
+
+![Screenshot from 2025-04-07 14-16-15](https://github.com/user-attachments/assets/0c21e558-0b39-4fc4-a87d-f97e08af0140)
+
+### In above Image , the file explore saves our contracts.
 
 
 
