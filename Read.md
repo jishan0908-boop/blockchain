@@ -324,3 +324,86 @@ contract Twitter{
 ![Screenshot from 2025-04-07 14-40-20](https://github.com/user-attachments/assets/d8fc347f-6e1c-4e8c-9612-4794260d6544)
 
 ![Screenshot from 2025-04-07 14-40-33](https://github.com/user-attachments/assets/de9a6069-b291-4ea6-9159-9510dd01fa83)
+
+
+# Deploying My COntract on the Sepolia Network !!
+
+## Code :-
+
+```
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract Twitter{
+    uint256 retweet = 0;
+    uint16 public MAX_LEN = 100;
+    struct Profile{
+        uint256 id;
+        address User;
+        string Data;
+        uint256 Likes;
+        uint256 Timestamp;
+        uint256 Retweets;
+    }
+    mapping(address => Profile[]) public tweets;
+    address public UserAcc;
+    constructor(){
+       UserAcc = msg.sender;
+    }
+    
+    modifier OnlyOwner() {
+        require(msg.sender == UserAcc, "User Name Not Found!!");
+        _;
+    }
+    function changeTweetLength(uint16 _newTweetLen) public OnlyOwner {
+        MAX_LEN = _newTweetLen;
+    }
+
+    function createTweet(string memory _tweet) public{
+        require(bytes(_tweet).length <= MAX_LEN , "Tweet is too long!!!!!."); //Adding condition where the length of tweet must be limited.
+        Profile memory PF1 = Profile({
+            id:tweets[msg.sender].length,
+            User:msg.sender,
+            Data:_tweet,
+            Likes:0,
+            Timestamp:block.timestamp,
+            Retweets: retweet
+        });
+        tweets[msg.sender].push(PF1); // This will add the tweets into the array .
+        retweet++;
+    }
+    function LikesTweets(address User , uint256 id) external {
+        require(tweets[User][id].id == id , "Tweet Dose Not Exit !!!");
+        tweets[User][id].Likes++;
+    }
+    function UnLikeTweets(address User , uint256 id) external{
+        require(tweets[User][id].id == id ,"Tweet Dose Not Exit !!!");
+        require(tweets[User][id].Likes > 0 , "There is on Likes!!");
+        
+        tweets[User][id].Likes--;
+    }
+    function getTweets(address _owner, uint32 _i) public view returns(Profile memory){
+        return tweets[_owner][_i]; // It will provide the specifc tweet , that is persent at the specifc index of the array.
+    }
+    function getAllTweets(address _owner) public view returns(Profile[] memory){
+        return tweets[_owner]; // This will return all the tweets present in that address .
+    } 
+}
+
+```
+
+## MetaMask Asking for conormation : - 
+
+![Screenshot from 2025-05-15 13-05-25](https://github.com/user-attachments/assets/b45478a1-21a3-446c-abeb-6a05a9598088)
+
+
+## Deploying My Smart Contract: -
+
+![Screenshot from 2025-05-15 12-58-34](https://github.com/user-attachments/assets/3eee8f55-216f-4901-8289-6ad7754368ae)
+
+![Screenshot from 2025-05-15 12-58-14](https://github.com/user-attachments/assets/d291fed6-2963-434a-8c67-47e7a1a9e4ef)
+
+## Having Tarchsaction :-
+
+![Screenshot from 2025-05-15 12-55-15](https://github.com/user-attachments/assets/7f63773e-81da-46e8-9db0-0ab5eeb300f2)
