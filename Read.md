@@ -413,3 +413,54 @@ contract Twitter{
 ## Created An Event :-
 
 ![Screenshot from 2025-05-15 14-59-42](https://github.com/user-attachments/assets/1d296e98-76ab-4588-9b69-7ac33710e14f)
+
+
+# Lab Question:
+
+## 1. Create a voting system with multiple candidates. Each address can vote only once.
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract VotingSystem {
+    struct Candidate {
+        string name;
+        uint256 voteCount;
+    }
+
+    mapping(address => bool) public hasVoted;
+
+    Candidate[] public candidates;
+
+    event Voted(address indexed voter, uint256 indexed candidateIndex);
+
+    constructor(string[] memory _candidateNames) {
+        for (uint i = 0; i < _candidateNames.length; i++) {
+            candidates.push(Candidate({ name: _candidateNames[i], voteCount: 0 }));
+        }
+    }
+
+    function vote(uint256 candidateIndex) external {
+        require(!hasVoted[msg.sender], "You have already voted!");
+        require(candidateIndex < candidates.length, "Invalid candidate index");
+
+        candidates[candidateIndex].voteCount += 1;
+        hasVoted[msg.sender] = true;
+
+        emit Voted(msg.sender, candidateIndex);
+    }
+
+    function getNumCandidates() external view returns (uint256) {
+        return candidates.length;
+    }
+
+    function getCandidate(uint256 index) external view returns (string memory, uint256) {
+        require(index < candidates.length, "Invalid candidate index");
+        Candidate storage candidate = candidates[index];
+        return (candidate.name, candidate.voteCount);
+    }
+}
+
+```
+![Screenshot from 2025-05-22 12-37-51](https://github.com/user-attachments/assets/20933685-6654-4959-aab5-750518856cae)
+![Screenshot from 2025-05-22 12-39-16](https://github.com/user-attachments/assets/f180438c-246a-4646-b8e0-d7ce7adafc14)
