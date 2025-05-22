@@ -506,3 +506,38 @@ contract Student{
 ![Screenshot from 2025-05-22 18-45-16](https://github.com/user-attachments/assets/1315de0c-fc02-4457-a992-224679671760)
 
 ![Screenshot from 2025-05-22 18-56-32](https://github.com/user-attachments/assets/43dff70d-4987-44d4-b801-db55c880ff77)
+
+
+## Develop a contract that only allows the deployer (owner) to call a specific function (use modifiers).
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract Third {
+    address public owner;
+    
+    constructor() payable {
+        owner = msg.sender; 
+        emit OwnershipTransferred(owner, msg.sender);
+    }
+    
+    modifier onlyOwner(){
+        require(msg.sender == owner, "This function can only be called by the current owner");
+        _;
+    }
+    
+    event OwnershipTransferred(address _oldOwner, address  _newOwner);
+    
+    function transferOwnership(address _newOwner) external onlyOwner {   
+    require(_newOwner != address(0), "New owner can't be the zero address");
+        
+        emit OwnershipTransferred(owner, _newOwner);
+        owner = _newOwner;
+    }
+}
+```
+![Screenshot from 2025-05-22 19-02-19](https://github.com/user-attachments/assets/4732d6ac-ca0f-4ea5-b2fc-9f89eb21dc0b)
+![Screenshot from 2025-05-22 19-02-48](https://github.com/user-attachments/assets/6e495f80-318a-4907-b1bb-1c01813fd948)
+![Screenshot from 2025-05-22 19-03-08](https://github.com/user-attachments/assets/25f7a94d-20fb-4072-9f1e-8a38003f59f4)
+
+
