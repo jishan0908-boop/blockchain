@@ -464,3 +464,43 @@ contract VotingSystem {
 ```
 ![Screenshot from 2025-05-22 12-37-51](https://github.com/user-attachments/assets/20933685-6654-4959-aab5-750518856cae)
 ![Screenshot from 2025-05-22 12-39-16](https://github.com/user-attachments/assets/f180438c-246a-4646-b8e0-d7ce7adafc14)
+
+##Write a contract that manages a list of student records (name, roll number). Allow adding and retrieving student data.
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract Student{
+    struct Record {
+        address RollNo;
+        string Name;
+    }
+
+    Record[] public record;
+
+    function addRecord(address Id ,string memory Name) public returns(string memory){
+        require(!check(Id),"This Roll No Already Exits!!!;");
+        record.push(Record({RollNo: Id, Name: Name}));
+        return "Add Student Successfully!!!!";
+    }
+    function check(address Id) internal view returns(bool){
+        for(uint256 i = 0 ; i <record.length ; i++){
+            if(record[i].RollNo == Id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function getRecord(uint256 Id) public view returns(address,string memory)
+    {
+        return(record[Id].RollNo,record[Id].Name);
+    }
+}
+```
+![Screenshot from 2025-05-22 18-56-32](https://github.com/user-attachments/assets/43dff70d-4987-44d4-b801-db55c880ff77)
+
+![Screenshot from 2025-05-22 18-57-45](https://github.com/user-attachments/assets/ca82cda9-4c7b-4163-b2ec-886390cc4476)
+
+![Screenshot from 2025-05-22 18-45-16](https://github.com/user-attachments/assets/1315de0c-fc02-4457-a992-224679671760)
