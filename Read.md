@@ -540,4 +540,45 @@ contract Third {
 ![Screenshot from 2025-05-22 19-02-48](https://github.com/user-attachments/assets/6e495f80-318a-4907-b1bb-1c01813fd948)
 ![Screenshot from 2025-05-22 19-03-08](https://github.com/user-attachments/assets/25f7a94d-20fb-4072-9f1e-8a38003f59f4)
 
+## Write a contract where people can donate Ether and the top 3 donors are tracked.
+
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract DonationBox {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender; 
+    }
+
+    function donate() public payable {
+        require(msg.value > 0, "Must send some Ether");
+    }
+
+
+    function withdraw() public {
+        require(msg.sender == owner, "Only owner can withdraw");
+        payable(owner).transfer(address(this).balance);
+    }
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+}
+
+```
+![Screenshot from 2025-05-22 19-18-12](https://github.com/user-attachments/assets/906b4127-4a07-424f-8565-3fbcecd08126)
+
+![Screenshot from 2025-05-22 19-18-44](https://github.com/user-attachments/assets/d96767a3-3a29-46a8-a411-5ae001f29766)
+
+![Screenshot from 2025-05-22 19-19-00](https://github.com/user-attachments/assets/10c941a4-f142-446b-ad5f-8b5293cf1f9b)
+
+![Screenshot from 2025-05-22 19-19-14](https://github.com/user-attachments/assets/9af8662b-14c2-4022-ab7a-78d1b2814569)
+
+![Screenshot from 2025-05-22 19-19-56](https://github.com/user-attachments/assets/7c9d3f9d-98b9-44dc-8a83-d587c72eb821)
+
+
 
