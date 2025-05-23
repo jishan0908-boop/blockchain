@@ -580,5 +580,67 @@ contract DonationBox {
 
 ![Screenshot from 2025-05-22 19-19-56](https://github.com/user-attachments/assets/7c9d3f9d-98b9-44dc-8a83-d587c72eb821)
 
+##  Implement a simple auction system where users can place bids, and the highest bidder wins.
 
+```
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract DonationBox {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender; 
+    }
+    struct record{
+        address Bidder;
+        uint256 Bid;
+    }
+    
+    record[] public Record;
+    uint256 HighestBid ;
+    address BidderIs;
+    function Bidder() public payable {
+        require(msg.value > 0, "Must send some Ether");
+        Record.push(record({Bidder:msg.sender, Bid: convertWeiToEther(msg.value)}));
+    }
+    
+    function check() public {
+        for (uint256 i = 1 ;i<Record.length; ++i){
+            for(uint256 j = 0 ; j<=i;j++){
+                if(Record[j].Bid > Record[i].Bid){
+                    uint256 temp = Record[j].Bid;
+                    Record[j].Bid = Record[i].Bid;
+                    Record[i].Bid = temp;
+                }
+            }
+        }
+        HighestBid = Record[0].Bid;
+        BidderIs = Record[0].Bidder;
+        
+    }
+
+    function withdraw() public {
+        require(msg.sender == owner, "Only owner can withdraw");
+        payable(owner).transfer(address(this).balance);
+    }
+   
+    function highestBidder() public view returns(address,uint256){
+        return(BidderIs,HighestBid);
+    }
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+    function convertWeiToEther(uint256 weiAmount) internal pure returns (uint256) {
+        return weiAmount / 1 ether;
+    }
+}
+
+```
+![Screenshot from 2025-05-23 09-53-58](https://github.com/user-attachments/assets/cb9b7907-a09b-43c1-a1fc-e1cb19e89655)
+![Screenshot from 2025-05-23 09-54-28](https://github.com/user-attachments/assets/c911e2ba-b2a2-4b86-b219-f3d65c49d868)
+![Screenshot from 2025-05-23 09-54-43](https://github.com/user-attachments/assets/babfdb07-24bd-4446-83fb-bef5c3f93491)
+![Screenshot from 2025-05-23 09-55-03](https://github.com/user-attachments/assets/7c841dec-90e8-419e-9095-b9b1fdf4e75e)
 
