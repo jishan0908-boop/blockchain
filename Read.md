@@ -644,3 +644,38 @@ contract DonationBox {
 ![Screenshot from 2025-05-23 09-54-43](https://github.com/user-attachments/assets/babfdb07-24bd-4446-83fb-bef5c3f93491)
 ![Screenshot from 2025-05-23 09-55-03](https://github.com/user-attachments/assets/7c841dec-90e8-419e-9095-b9b1fdf4e75e)
 
+
+##  Create a contract that splits incoming Ether between 3 fixed addresses.
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract Split {
+    address payable public addr1;
+    address payable public addr2;
+    address payable public addr3;
+
+    constructor(address payable _a1, address payable _a2, address payable _a3) {
+        addr1 = _a1;
+        addr2 = _a2;
+        addr3 = _a3;
+    }
+
+    function splitEther() public payable {
+        require(msg.value > 0, "No ether sent");
+
+        uint256 total = msg.value;
+
+        uint256 share1 = (total * 30) / 100; 
+        uint256 share2 = (total * 40) / 100; 
+        uint256 share3 = total - share1 - share2;
+
+        addr1.transfer(share1);
+        addr2.transfer(share2);
+        addr3.transfer(share3);
+    }
+}
+```
+
+![Screenshot from 2025-05-23 12-41-51](https://github.com/user-attachments/assets/c0c62ed0-f279-4833-a542-7c1fb5d7408b)
